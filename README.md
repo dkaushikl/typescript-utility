@@ -1,2 +1,3 @@
-# typescript-utility
-just sample library for custom typescript utility
+# starwars-names
+
+For all your random Star Wars character needs
