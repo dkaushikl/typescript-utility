@@ -1,37 +1,14 @@
-name: 
+name:
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main]
   pull_request:
-    branches:
-      - main # triggers the flow for every PR to main
-      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
-
-      types:
+    branches: [main, feature/**]
+    types:
       - synchronize # PR was updated
       - opened # PR was open
       - reopened # PR was closed and is now open again
       - ready_for_review # PR was converted from draft to open
 jobs:
-  build:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies 🔧
-        run: npm install
-      - name: Build library🔧
-        run: npm run build
   lint:
     name: lint
     runs-on: ubuntu-latest
@@ -42,8 +19,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies 🔧
         run: npm install
@@ -59,11 +36,27 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies 🔧
         run: npm install
       - name: Unit testing 🔧
         run: npm run test
- 
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies 🔧
+        run: npm install
+      - name: Build library🔧
+        run: npm run build
