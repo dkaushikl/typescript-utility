@@ -1,15 +1,11 @@
 name: 
 
 on:
-  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
-    branches:
-      - main # triggers the flow for every PR to main
-      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
-
-      types:
+    branches: [main, feature/**]
+    types:
       - synchronize # PR was updated
       - opened # PR was open
       - reopened # PR was closed and is now open again
