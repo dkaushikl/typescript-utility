@@ -1,33 +1,35 @@
 name: Publish
 on:
   push:
-    branches: [main]
+    branches: [main, feature/semantic-auto-release]
 jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: ⬢ Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: "*"
           registry-url: 'https://registry.npmjs.org'
+          cache: npm
 
-      - name: Install dependencies and build 🔧
-        run: npm install && npm run build
+      - name: 📦 Install Packages
+        run: npm install
 
-      - name: validate test build and lint 🔧
+      - name: 🔧 Validate Unit testing, Linting & Build
         run: npm run validate
 
-      - name: Upload coverage reports to Codecov
+      - name: 📝 Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Publish package on NPM 📦
-        run: npm run release
+      - name: 🚀 Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
+        
