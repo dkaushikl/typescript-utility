@@ -10,8 +10,8 @@ on:
       - ready_for_review # PR was converted from draft to open
 
 jobs:
-  lint:
-    name: lint
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repo
