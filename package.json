@@ -1,6 +1,6 @@
 {
   "name": "typescript-utility",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "just sample library for custom typescript utility",
   "main": "dist/index.js",
   "scripts": {
