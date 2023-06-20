@@ -13,8 +13,7 @@
     "lint": "eslint src",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "coverage": "cross-env NODE_ENV=test nyc mocha src/index.test.js",
-    "validate": "npm-run-all --parallel coverage lint build",
-    "release": "semantic-release"
+    "validate": "npm-run-all --parallel coverage lint build"
   },
   "keywords": [
     "library"
