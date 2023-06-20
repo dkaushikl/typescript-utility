@@ -1,6 +1,6 @@
 {
   "name": "typescript-utility",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "just sample library for custom typescript utility",
   "main": "dist/index.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js",
     "lint": "eslint src",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "coverage": "cross-env NODE_ENV=test nyc mocha src/index.test.js",
     "validate": "npm-run-all --parallel coverage lint build"
   },
@@ -40,6 +41,7 @@
     "@babel/register": "^7.10.5",
     "babel-plugin-istanbul": "^6.1.1",
     "chai": "^4.2.0",
+    "codecov": "^3.8.3",
     "cross-env": "^7.0.3",
     "eslint": "3.2.0",
     "eslint-config-kentcdodds": "^9.0.0",
