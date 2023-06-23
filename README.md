@@ -35,8 +35,8 @@ npm install --save typescript-utility
 Alternatively you can get the [UMD][umd] build which is also published to the npm
 registry and is therefore available via [unpkg.com][unpkg]:
 
-- [https://unpkg.com/typescript-utility@1.0.4/dist/index.umd.js][unpkg-link]
-- [https://unpkg.com/typescript-utility@1.0.4/dist/index.umd.min.js][unpkg-min-link]
+- [https://unpkg.com/typescript-utility@1.0.5/dist/index.umd.js][unpkg-link]
+- [https://unpkg.com/typescript-utility@1.0.5/dist/index.umd.min.js][unpkg-min-link]
 
 The UMD build exposes the module as a global called `typescriptUtility` or as an unnamed
 module for AMD/CommonJS (require it by its file path)
@@ -70,5 +70,5 @@ MIT
 [roadmap]: https://github.com/dkaushikl/typescript-utility/blob/master/other/ROADMAP.md
 [umd]: https://github.com/umdjs/umd
 [unpkg]: https://unpkg.com
-[unpkg-link]: https://unpkg.com/typescript-utility@1.0.4/dist/index.umd.js
-[unpkg-min-link]: https://unpkg.com/typescript-utility@1.0.4/dist/index.umd.min.js
+[unpkg-link]: https://unpkg.com/typescript-utility@1.0.5/dist/index.umd.js
+[unpkg-min-link]: https://unpkg.com/typescript-utility@1.0.5/dist/index.umd.min.js
