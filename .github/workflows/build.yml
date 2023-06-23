@@ -30,7 +30,7 @@ jobs:
         run: npm run lint
 
       - name: 🚦 Unit testing 
-        run: npm run lint
+        run: npm run coverage
 
       - name: 🔨 Build library 
         run: npm run build
