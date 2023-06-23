@@ -1,36 +1,56 @@
-name:
-
-on:
+name: null
+'on':
   pull_request:
-    branches: [main, feature/**, hotfix/**]
+    branches:
+      - main
+      - feature/**
+      - hotfix/**
     types:
-      - synchronize # PR was updated
-      - opened # PR was open
-      - reopened # PR was closed and is now open again
-      - ready_for_review # PR was converted from draft to open
-
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
 jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v3
+      - name: ⬢ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test
   build:
     name: build
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repo
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
       - name: ⬢ Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "*"
-          cache: npm
-
-      - name: 📦 Install Packages
-        run: npm install
-
-      - name: 💅 Check Linting
-        run: npm run lint
-
-      - name: 🚦 Unit testing 
-        run: npm run coverage
-
-      - name: 🔨 Build library 
-        run: npm run build
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+  coverage:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v3
+      - name: ⬢ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run coverage
+      - name: 📝 Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
